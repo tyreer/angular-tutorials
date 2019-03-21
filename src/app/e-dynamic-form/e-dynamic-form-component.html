@@ -1,0 +1,49 @@
+<h2>Egghead forms</h2>
+<form [formGroup]="form">
+  <div *ngFor="let prop of personProps">
+    <label>{{ prop.label }}:</label>
+    <div [ngSwitch]="prop.type">
+      <input
+        *ngSwitchCase="'text'"
+        [type]="prop.type"
+        [formControlName]="prop.key"
+      />
+      <input
+        *ngSwitchCase="'number'"
+        [type]="prop.type"
+        [formControlName]="prop.key"
+      />
+      <div *ngSwitchCase="'radio'">
+        <label *ngFor="let option of prop.options">
+          <input
+            type="radio"
+            [name]="prop.key"
+            [formControlName]="prop.key"
+            [value]="option.value"
+          />
+          {{ option.label }}
+        </label>
+      </div>
+      <select *ngSwitchCase="'select'" [formControlName]="prop.key">
+        <option *ngFor="let option of prop.options" [value]="option.value">{{
+          option.label
+        }}</option>
+      </select>
+    </div>
+    <div
+      *ngIf="
+        form.get(prop.key).invalid &&
+        (form.get(prop.key).dirty || form.get(prop.key).touched)
+      "
+    >
+      <div *ngIf="form.get(prop.key).errors.required">
+        You have to provide a value.
+      </div>
+      <div *ngIf="form.get(prop.key).errors.min">
+        You have to provide a value that is greater of equal to
+        {{ form.get(prop.key).errors.min.min }}
+      </div>
+    </div>
+  </div>
+</form>
+<pre>{{ form.value | json }}</pre>

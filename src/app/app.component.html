@@ -4,6 +4,10 @@
   <a routerLink="/heroes">Heroes</a>
   <a routerLink="/input">Input</a>
   <a routerLink="/form">Form</a>
+  <a routerLink="/e-form">Egghead Form</a>
 </nav>
 <router-outlet></router-outlet>
+<app-e-dynamic-form-component
+  [formDataObj]="person"
+></app-e-dynamic-form-component>
 <app-messages></app-messages>
