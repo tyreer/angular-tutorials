@@ -18,7 +18,7 @@ export class HeroDetailComponent implements OnInit {
     private location: Location
   ) {}
 
-  @Input() hero: Hero;
+  hero: Hero;
 
   ngOnInit(): void {
     this.getHero();

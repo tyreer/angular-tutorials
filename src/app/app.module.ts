@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -12,9 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { DynamicFormComponent } from './e-dynamic-form/e-dynamic-form-component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
     DashboardComponent,
     HeroSearchComponent,
     NameEditorComponent,
-    ProfileEditorComponent
+    ProfileEditorComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
