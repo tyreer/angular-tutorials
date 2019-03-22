@@ -2,6 +2,10 @@
 
 **Questions**
 
+- How would I include a separate nav for all the heros pages?
+
+  - Can I have a `router-outlet` within a base component in the heroes-tutorial module?
+
 - Can you just put a component's selector tag into any template and it will insert an instance of the component? Like `<app-hero-list></app-hero-list>`
 
 - How do you bind class members to properties of components _through_ the
@@ -91,6 +95,20 @@ https://egghead.io/courses/create-dynamic-forms-in-angular
 ```
 
 - Using **get** here to access the `form` control's children controls (which are inputs)
+
+### Egghead: Learn Angular Router for Real-World Applications
+
+https://egghead.io/courses/learn-angular-router-for-real-world-applications
+
+- Common for different sections of a site to be registered in common `modules`
+- We've done with with the `routing module`
+
+```ts
+@NgModule({
+  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)]
+})
+```
 
 .
 .
