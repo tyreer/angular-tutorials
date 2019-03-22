@@ -2,13 +2,15 @@
 
 **Questions**
 
+- Can you just put a component's selector tag into any template and it will insert an instance of the component? Like `<app-hero-list></app-hero-list>`
+
 - How do you bind class members to properties of components _through_ the
   `<router-outlet >`? **/app/app.component.html**
 
   ```ts
   <router-outlet></router-outlet>
-  <app-e-dynamic-form-component
-  [formDataObj]="person" ></app-e-dynamic-form-component
+  <app-e-dynamic-form
+  [formDataObj]="person" ></app-e-dynamic-form
   > </router-outlet>
   </div>
   ```
@@ -45,6 +47,29 @@ https://angular.io/guide/template-syntax#input-and-output-properties
 https://angular.io/guide/template-syntax#binding-to-a-different-component
 
 > The Angular compiler won't bind to properties of a different component unless they are Input or Output properties.
+
+#### Components
+
+**Structural directives**
+
+> Structural directives alter layout by adding, removing, and replacing elements in the DOM
+
+`*ngFor` + `*ngif`
+
+```html
+<li *ngFor="let hero of heroes"></li>
+<app-hero-detail *ngIf="selectedHero"></app-hero-detail>
+```
+
+**Attribute directives**
+
+> Attribute directives alter the appearance or behavior of an existing element.
+
+> The ngModel directive implements two-way data binding
+
+```html
+<input [(ngModel)]="hero.name" placeholder="name" />
+```
 
 ### Egghead: Create Dynamic Forms in Angular
 

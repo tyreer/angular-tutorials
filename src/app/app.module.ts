@@ -14,7 +14,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
-import { DynamicFormComponent } from './e-dynamic-form/e-dynamic-form-component';
+import { DynamicFormComponent } from './e-dynamic-form/e-dynamic-form.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DynamicFormComponent } from './e-dynamic-form/e-dynamic-form-component'
     HeroSearchComponent,
     NameEditorComponent,
     ProfileEditorComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

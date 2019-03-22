@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ignoreElements } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-e-dynamic-form-component',
-  templateUrl: './e-dynamic-form-component.html',
+  selector: 'app-e-dynamic-form',
+  templateUrl: './e-dynamic-form.component.html',
   styles: []
 })
 export class DynamicFormComponent implements OnInit {
