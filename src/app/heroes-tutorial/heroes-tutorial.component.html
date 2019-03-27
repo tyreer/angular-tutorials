@@ -1,6 +1,7 @@
 <nav>
-  <a routerLink="/heroes-tutorial/dashboard">Dashboard</a>
-  <a routerLink="/heroes-tutorial/heroes">Heroes</a>
-  <a routerLink="/heroes-tutorial/input">Input</a>
-  <a routerLink="/heroes-tutorial/form">Form</a>
+  <a [routerLink]="['dashboard']" routerLinkActive="active-link">Dashboard</a>
+  <a [routerLink]="['heroes']" routerLinkActive="active-link">Heroes</a>
+  <a [routerLink]="['input']" routerLinkActive="active-link">Input</a>
+  <a [routerLink]="['form']" routerLinkActive="active-link">Form</a>
 </nav>
+<router-outlet></router-outlet>

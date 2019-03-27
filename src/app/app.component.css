@@ -5,8 +5,8 @@ nav {
 
 h1 {
   font-size: 1.2em;
-  color: #999;
   margin-bottom: 0;
+  padding: 20px 0;
 }
 h2 {
   font-size: 2em;
@@ -20,6 +20,7 @@ nav a {
   display: inline-block;
   background-color: #eee;
   border-radius: 4px;
+  margin-right: 10px;
 }
 nav a:visited,
 a:link {
@@ -29,6 +30,11 @@ nav a:hover {
   color: #039be5;
   background-color: #cfd8dc;
 }
-nav a.active {
-  color: #039be5;
+
+nav .active-link {
+  background-color: lightcoral;
+}
+
+nav a.active-link {
+  color: white;
 }

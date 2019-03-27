@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,41 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public authService: AuthService
+  ) {}
   title = 'Angular tutorials';
 
-  person = {
-    firstname: {
-      label: 'Firstname',
-      value: 'Juri',
-      type: 'text',
-      validators: {
-        required: true
-      }
-    },
-    age: {
-      label: 'Age',
-      value: 32,
-      type: 'number',
-      validators: {
-        min: 18
-      }
-    },
-    gender: {
-      label: 'Gender',
-      value: 'F',
-      type: 'radio',
-      options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]
-    },
-    city: {
-      label: 'City',
-      value: 'NY',
-      type: 'select',
-      options: [
-        { label: '(choose one)', value: '' },
-        { label: 'New York', value: 'NY' },
-        { label: 'Los Angeles', value: 'LA' },
-        { label: 'Salt Lake City', value: 'SLC' }
-      ]
-    }
-  };
+  login() {
+    this.authService.login();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

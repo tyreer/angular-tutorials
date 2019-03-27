@@ -9,12 +9,17 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
 import { HeroesTutorialComponent } from './heroes-tutorial.component';
 
 const routes: Routes = [
-  { path: 'heroes-tutorial', component: HeroesTutorialComponent },
-  { path: 'heroes-tutorial/heroes', component: HeroesComponent },
-  { path: 'heroes-tutorial/dashboard', component: DashboardComponent },
-  { path: 'heroes-tutorial/detail/:id', component: HeroDetailComponent },
-  { path: 'heroes-tutorial/input', component: NameEditorComponent },
-  { path: 'heroes-tutorial/form', component: ProfileEditorComponent }
+  {
+    path: '',
+    component: HeroesTutorialComponent,
+    children: [
+      { path: 'heroes', component: HeroesComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'detail/:id', component: HeroDetailComponent },
+      { path: 'input', component: NameEditorComponent },
+      { path: 'form', component: ProfileEditorComponent }
+    ]
+  }
 ];
 
 @NgModule({

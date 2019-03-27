@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-e-dynamic-form',
@@ -8,11 +8,31 @@ import { ignoreElements } from 'rxjs/operators';
   styles: []
 })
 export class DynamicFormComponent implements OnInit {
+  constructor(public activeRoute: ActivatedRoute, private router: Router) {}
   form: FormGroup;
-  @Input() formDataObj;
+  formDataObj;
   personProps = [];
+  urlParam;
+
+  onSave(name) {
+    // redirect to page with updated query param—either option works
+    // this.router.navigateByUrl(`/egghead/${name}`);
+    this.router.navigate([`../${name}`], {
+      relativeTo: this.activeRoute,
+      preserveQueryParams: true
+    });
+  }
 
   ngOnInit() {
+    this.activeRoute.data.subscribe(data => {
+      this.formDataObj = data.person;
+    });
+
+    // this.urlParam = this.activeRoute.snapshot.params.urlParam;
+    this.activeRoute.params.subscribe(data => {
+      this.urlParam = data.urlParam;
+    });
+
     const formDataObj = {};
     for (const prop of Object.keys(this.formDataObj)) {
       formDataObj[prop] = new FormControl(
