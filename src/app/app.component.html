@@ -1,13 +1,28 @@
+<div style="text-align: right">
+  <a
+    href="javascript:;"
+    *ngIf="authService.isLoggedIn(); else loginTmpl"
+    (click)="logout()"
+    >Logout</a
+  >
+
+  <ng-template #loginTmpl>
+    <a href="javascript:;" (click)="login()">Login</a>
+  </ng-template>
+</div>
 <h1>{{ title }}</h1>
 <nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-  <a routerLink="/input">Input</a>
-  <a routerLink="/form">Form</a>
-  <a routerLink="/e-form">Egghead Form</a>
+  <a
+    routerLink="egghead"
+    routerLinkActive="active-link"
+    [queryParams]="activatedRoute.queryParams | async"
+    >Egghead</a
+  >
+  <a
+    routerLink="heroes-tutorial"
+    routerLinkActive="active-link"
+    [queryParams]="activatedRoute.queryParams | async"
+    >Heroes Tutorial</a
+  >
 </nav>
 <router-outlet></router-outlet>
-<app-e-dynamic-form-component
-  [formDataObj]="person"
-></app-e-dynamic-form-component>
-<app-messages></app-messages>

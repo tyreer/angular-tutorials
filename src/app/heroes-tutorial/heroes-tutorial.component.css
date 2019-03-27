@@ -1,18 +1,7 @@
-/* AppComponent's private CSS styles */
 nav {
-  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-h1 {
-  font-size: 1.2em;
-  margin-bottom: 0;
-  padding: 20px 0;
-}
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
-}
 nav a {
   padding: 5px 10px;
   text-decoration: none;
@@ -22,6 +11,7 @@ nav a {
   border-radius: 4px;
   margin-right: 10px;
 }
+
 nav a:visited,
 a:link {
   color: #607d8b;
@@ -30,9 +20,12 @@ nav a:hover {
   color: #039be5;
   background-color: #cfd8dc;
 }
+nav a.active {
+  color: #039be5;
+}
 
 nav .active-link {
-  background-color: lightcoral;
+  background-color: orange;
 }
 
 nav a.active-link {
