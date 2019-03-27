@@ -4,6 +4,14 @@
 
 - Can you just put a component's selector tag into any template and it will insert an instance of the component? Like `<app-hero-list></app-hero-list>`
 
+- What is `<HeroDetailComponent>` in:
+
+```ts
+export class CanDeactivateDirtyComponent implements CanDeactivate<HeroDetailComponent>
+```
+
+? A return type?
+
 ## Notes
 
 ```ts
@@ -422,6 +430,8 @@ onSave(name) {
   }
 ```
 
+- Getting `preserveQueryParams is deprecated, use queryParamsHandling instead` in console
+
 **Child navigation**
 
 ```ts
@@ -686,9 +696,90 @@ export class AuthGuard implements CanActivate, CanLoad {
 - Need to make `AuthGuard` implement `CanLoad` and then provide logic in `canLoad()` method
 
 **Notify user about unsaved data when leaving a component**
-https://github.com/juristr/egghead-learn-angular-router/commit/356351725a364f62bc9f1e6362e238a91f4f5e41
+Instructor changes: https://github.com/juristr/egghead-learn-angular-router/commit/356351725a364f62bc9f1e6362e238a91f4f5e41
 
-This is a normal Angular service
+_My commit implementing feature:_ https://github.com/tyreer/angular-tutorials/commit/271528929531b7c56fae2345d1c9a418ac24f821
+
+```ts
+const routes: Routes = [
+  {
+    path: "",
+    component: HeroesTutorialComponent,
+    children: [
+      {
+        path: "detail/:id",
+        component: HeroDetailComponent,
+        canDeactivate: [CanDeactivateDirtyComponent]
+      }
+    ]
+  }
+];
+```
+
+- `canDeactivate` is router attribute
+
+```ts
+import { CanDeactivate } from "@angular/router";
+
+@Injectable()
+export class CanDeactivateDirtyComponent
+  implements CanDeactivate<HeroDetailComponent> {
+  canDeactivate(component: HeroDetailComponent): boolean {
+    const isDirty = component.isDirty;
+
+    if (isDirty) {
+      return confirm("You have unsaved changes, do you want to proceed?");
+    } else {
+      return true;
+    }
+  }
+}
+```
+
+- Injectable service **implementing** `CanDeactivate` with **our target component as a parameter**
+  - We have access to `component.isDirty` because we've passed in `HeroDetailComponent`
+- "This is a normal Angular service"
+
+```ts
+  ngOnInit(): void {
+    this.getHero();
+
+    this.form.get('name').valueChanges.subscribe(nameValue => {
+      if (nameValue !== this.hero.name) {
+        this.isDirty = true;
+      } else {
+        this.isDirty = false;
+      }
+      this.editedName = nameValue;
+    });
+  }
+
+  getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id).subscribe(hero => {
+      this.hero = hero;
+      this.editedName = hero.name;
+    });
+  }
+
+  onSubmit({ value, valid }): void {
+    if (valid) {
+      this.heroService
+        .updateHero({ ...this.hero, name: this.editedName })
+        .subscribe(() => this.getHero());
+      this.isDirty = false;
+    }
+  }
+```
+
+- `valueChanges` is our observable that keeps track on the stream of input changes
+
+```ts
+providers: [CanDeactivateDirtyComponent];
+```
+
+- Need to include this in `HeroesTutorialModule`
+
 .
 .
 .
