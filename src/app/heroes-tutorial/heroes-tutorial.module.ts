@@ -11,6 +11,7 @@ import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeroesTutorialComponent } from './heroes-tutorial.component';
+import { CanDeactivateDirtyComponent } from './can-deactivate.guard';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { HeroesTutorialComponent } from './heroes-tutorial.component';
     HeroSearchComponent,
     NameEditorComponent,
     ProfileEditorComponent
-  ]
+  ],
+  providers: [CanDeactivateDirtyComponent]
 })
 export class HeroesTutorialModule {}

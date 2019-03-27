@@ -1,12 +1,13 @@
 <div *ngIf="hero">
   <h2>{{ hero.name | uppercase }} Details</h2>
   <div><span>id: </span>{{ hero.id }}</div>
-  <div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
     <label
-      >name:
-      <input [(ngModel)]="hero.name" placeholder="name" />
+      >New name:
+      <input type="name" value="{{ editedName }}" formControlName="name" />
     </label>
-  </div>
-  <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+    <button>save</button>
+  </form>
+  Unsaved changes: {{ isDirty }}
+  <button (click)="goBack()">back to list</button>
 </div>

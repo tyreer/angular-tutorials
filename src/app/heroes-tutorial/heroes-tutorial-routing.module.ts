@@ -7,6 +7,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { HeroesTutorialComponent } from './heroes-tutorial.component';
+import { CanDeactivateDirtyComponent } from './can-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,11 @@ const routes: Routes = [
     children: [
       { path: 'heroes', component: HeroesComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'detail/:id', component: HeroDetailComponent },
+      {
+        path: 'detail/:id',
+        component: HeroDetailComponent,
+        canDeactivate: [CanDeactivateDirtyComponent]
+      },
       { path: 'input', component: NameEditorComponent },
       { path: 'form', component: ProfileEditorComponent }
     ]
